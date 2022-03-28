@@ -18,7 +18,8 @@
     "publish": "pnpm run rm && pnpm run clean && pnpm run pnpm",
     "clean": "pnpm cache clean",
     "pnpm": "pnpm install",
-    "git-push": "git push --tags"
+    "git-push": "git push --tags",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@types/faker": "^6.6.9",
