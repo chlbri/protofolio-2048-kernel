@@ -269,6 +269,7 @@ export const machine = createMachine({
             },
           },
         },
+
         deauthentication: {
           invoke: {
             src: 'deauthenticate',
@@ -279,6 +280,7 @@ export const machine = createMachine({
             },
           },
         },
+        
         authenticated: {
           id: 'authenticated',
           exit: 'inc',
