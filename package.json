@@ -4,7 +4,7 @@
   "description": "https://github.com/chlbri/gitpod-typescript.git",
   "author": "chlbri <bri_lvi@icloud.com>",
   "license": "MIT",
-  "main":"index.js",
+  "main": "index.js",
   "typings": "index.d.ts",
   "scripts": {
     "tsc": "tsc",
@@ -29,16 +29,21 @@
     "edit-json-file": "^1.7.0",
     "eslint": "^8.9.0",
     "faker": "^6.6.6",
+    "husky": "^7.0.4",
     "immer": "^9.0.12",
     "jest": "^27.5.1",
     "jest-cucumber": "^3.0.1",
     "jest-extended": "^2.0.0",
     "nanoid": "^3.3.1",
     "prettier": "^2.5.1",
+    "pretty-quick": "^3.1.3",
     "rimraf": "^3.0.2",
     "shelljs": "^0.8.5",
     "ts-jest": "^27.1.3",
     "typescript": "^4.5.5"
   },
-  "repository": "https://github.com/chlbri/gitpod-typescript.git"
+  "repository": "https://github.com/chlbri/gitpod-typescript.git",
+  "dependencies": {
+    "xstate": "^4.30.6"
+  }
 }
