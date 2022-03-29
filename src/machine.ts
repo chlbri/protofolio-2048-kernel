@@ -1,30 +1,29 @@
 import { createMachine } from 'xstate';
 import { Context } from './ebr/context';
-import { CardsSchema } from './ebr/game/card';
-
-const cards: CardsSchema = [
-  undefined,
-  undefined,
-  undefined,
-  undefined,
-  undefined,
-  undefined,
-  undefined,
-  undefined,
-  undefined,
-  undefined,
-  undefined,
-  undefined,
-  undefined,
-  undefined,
-  undefined,
-  undefined,
-];
 
 export const machine = createMachine({
   context: {
     back: {
-      game: { cards },
+      game: {
+        cards: [
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+        ],
+      },
     },
   },
   id: 'mainMachine',
