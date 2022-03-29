@@ -1,7 +1,37 @@
 import { createMachine } from 'xstate';
+import { Context } from './ebr/context';
+import { CardsSchema } from './ebr/game/card';
+
+const cards: CardsSchema = [
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+];
 
 export const machine = createMachine({
+  context: {
+    back: {
+      game: { cards },
+    },
+  },
   id: 'mainMachine',
+  schema: {
+    context: {} as Context,
+  },
+  tsTypes: {} as import('./machine.typegen').Typegen0,
   states: {
     idle: {
       description: 'When the app is not launched',
@@ -280,7 +310,7 @@ export const machine = createMachine({
             },
           },
         },
-        
+
         authenticated: {
           id: 'authenticated',
           exit: 'inc',

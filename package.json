@@ -45,6 +45,7 @@
   },
   "repository": "https://github.com/chlbri/gitpod-typescript.git",
   "dependencies": {
-    "xstate": "^4.30.6"
+    "xstate": "^4.30.6",
+    "zod": "^3.14.3"
   }
 }
