@@ -22,6 +22,7 @@
     "prepare": "husky install"
   },
   "devDependencies": {
+    "@bemedev/test": "^0.0.2",
     "@types/faker": "^6.6.9",
     "@types/jest": "^27.4.0",
     "@typescript-eslint/eslint-plugin": "^5.12.0",
@@ -45,6 +46,7 @@
   },
   "repository": "https://github.com/chlbri/gitpod-typescript.git",
   "dependencies": {
+    "@bemedev/fstate": "^0.0.2",
     "xstate": "^4.30.6",
     "zod": "^3.14.3"
   }
