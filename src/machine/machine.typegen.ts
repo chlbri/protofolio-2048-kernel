@@ -3,7 +3,7 @@
 export interface Typegen0 {
   '@@xstate/typegen': true;
   eventsCausingActions: {
-    addNotEnvVariablesError: '';
+    addNotEnvVariablesError: 'error.platform.mainMachine.checkingEnvVariables:invocation[0]';
     addLogByEmailPasswordError: 'error.platform.mainMachine.started.authentication.emailPassword.login:invocation[0]';
     addRegisterByEmailPAsswordError: 'error.platform.mainMachine.started.authentication.emailPassword.register:invocation[0]';
     adLogByFacebookError: 'error.platform.mainMachine.started.authentication.facebook.login:invocation[0]';
@@ -12,7 +12,7 @@ export interface Typegen0 {
     addRegisterByGoogleError: 'error.platform.mainMachine.started.authentication.google.register:invocation[0]';
     addLogByAppleError: 'error.platform.mainMachine.started.authentication.apple.login:invocation[0]';
     addRegisterByAppleError: 'error.platform.mainMachine.started.authentication.apple.register:invocation[0]';
-    reportErrorDeauthentication: 'error.platform.mainMachine.started.deauthentication:invocation[0]';
+    reportErrorDeauthentication: 'error.platform.mainMachine.started.deauthentication.processing:invocation[0]';
     moveUp: 'MOVE_UP';
     moveDown: 'MOVE_DOWN';
     moveLeft: 'MOVE_LEFT';
@@ -20,9 +20,13 @@ export interface Typegen0 {
     inc: 'xstate.init';
     'i,nc': 'xstate.init';
     startAnimation: 'MOVE_UP' | 'MOVE_DOWN' | 'MOVE_LEFT' | 'MOVE_RIGHT';
+    addScore: 'MOVE_UP' | 'MOVE_DOWN' | 'MOVE_LEFT' | 'MOVE_RIGHT';
   };
   internalEvents: {
-    '': { type: '' };
+    'error.platform.mainMachine.checkingEnvVariables:invocation[0]': {
+      type: 'error.platform.mainMachine.checkingEnvVariables:invocation[0]';
+      data: unknown;
+    };
     'error.platform.mainMachine.started.authentication.emailPassword.login:invocation[0]': {
       type: 'error.platform.mainMachine.started.authentication.emailPassword.login:invocation[0]';
       data: unknown;
@@ -55,16 +59,21 @@ export interface Typegen0 {
       type: 'error.platform.mainMachine.started.authentication.apple.register:invocation[0]';
       data: unknown;
     };
-    'error.platform.mainMachine.started.deauthentication:invocation[0]': {
-      type: 'error.platform.mainMachine.started.deauthentication:invocation[0]';
+    'error.platform.mainMachine.started.deauthentication.processing:invocation[0]': {
+      type: 'error.platform.mainMachine.started.deauthentication.processing:invocation[0]';
       data: unknown;
     };
     'error.platform.mainMachine.started.authentication.autoLog:invocation[0]': {
       type: 'error.platform.mainMachine.started.authentication.autoLog:invocation[0]';
       data: unknown;
     };
-    'done.invoke.mainMachine.started.deauthentication:invocation[0]': {
-      type: 'done.invoke.mainMachine.started.deauthentication:invocation[0]';
+    'done.invoke.mainMachine.started.deauthentication.processing:invocation[0]': {
+      type: 'done.invoke.mainMachine.started.deauthentication.processing:invocation[0]';
+      data: unknown;
+      __tip: 'See the XState TS docs to learn how to strongly type this.';
+    };
+    'done.invoke.mainMachine.checkingEnvVariables:invocation[0]': {
+      type: 'done.invoke.mainMachine.checkingEnvVariables:invocation[0]';
       data: unknown;
       __tip: 'See the XState TS docs to learn how to strongly type this.';
     };
@@ -73,12 +82,13 @@ export interface Typegen0 {
       data: unknown;
       __tip: 'See the XState TS docs to learn how to strongly type this.';
     };
-    'xstate.after(timeBeforeAutolog)#notAuthenticated': {
-      type: 'xstate.after(timeBeforeAutolog)#notAuthenticated';
+    'xstate.after(timeBeforeAutolog)#mainMachine.started.notAuthenticated': {
+      type: 'xstate.after(timeBeforeAutolog)#mainMachine.started.notAuthenticated';
     };
     'xstate.init': { type: 'xstate.init' };
   };
   invokeSrcNameMap: {
+    checkEnvironmentVariables: 'done.invoke.mainMachine.checkingEnvVariables:invocation[0]';
     prepare: 'done.invoke.mainMachine.preparing:invocation[0]';
     start: 'done.invoke.mainMachine.starting:invocation[0]';
     logByEmailPassword: 'done.invoke.mainMachine.started.authentication.emailPassword.login:invocation[0]';
@@ -90,7 +100,7 @@ export interface Typegen0 {
     logByApple: 'done.invoke.mainMachine.started.authentication.apple.login:invocation[0]';
     registerByApple: 'done.invoke.mainMachine.started.authentication.apple.register:invocation[0]';
     autoLog: 'done.invoke.mainMachine.started.authentication.autoLog:invocation[0]';
-    deauthenticate: 'done.invoke.mainMachine.started.deauthentication:invocation[0]';
+    deauthenticate: 'done.invoke.mainMachine.started.deauthentication.processing:invocation[0]';
   };
   missingImplementations: {
     actions:
@@ -110,8 +120,10 @@ export interface Typegen0 {
       | 'moveRight'
       | 'inc'
       | 'i,nc'
-      | 'startAnimation';
+      | 'startAnimation'
+      | 'addScore';
     services:
+      | 'checkEnvironmentVariables'
       | 'prepare'
       | 'start'
       | 'logByEmailPassword'
@@ -130,10 +142,11 @@ export interface Typegen0 {
       | 'canMoveDown'
       | 'canMoveLeft'
       | 'canMoveRight';
-    delays: 'timeBeforeAutolog' | 'moveDuration';
+    delays: never;
   };
   eventsCausingServices: {
-    prepare: '';
+    checkEnvironmentVariables: 'START';
+    prepare: 'done.invoke.mainMachine.checkingEnvVariables:invocation[0]';
     start: 'done.invoke.mainMachine.preparing:invocation[0]';
     logByEmailPassword: 'LOGIN.EMAIL_PASSWORD';
     registerByEmailPassword: 'REGISTER.EMAIL_PASSWORD';
@@ -143,11 +156,11 @@ export interface Typegen0 {
     registerByGoogle: 'REGISTER.GOOGLE';
     logByApple: 'LOGIN.APPLE';
     registerByApple: 'REGISTER.APPLE';
-    autoLog: 'xstate.after(timeBeforeAutolog)#notAuthenticated';
-    deauthenticate: 'LOGOUT';
+    autoLog: 'xstate.after(timeBeforeAutolog)#mainMachine.started.notAuthenticated';
+    deauthenticate: 'xstate.init';
   };
   eventsCausingGuards: {
-    EnvironmentsVariablesAreLoaded: '';
+    EnvironmentsVariablesAreLoaded: 'done.invoke.mainMachine.checkingEnvVariables:invocation[0]';
     canMoveUp: 'MOVE_UP';
     canMoveDown: 'MOVE_DOWN';
     canMoveLeft: 'MOVE_LEFT';
@@ -179,6 +192,8 @@ export interface Typegen0 {
     | 'started.authentication.apple.register'
     | 'started.authentication.autoLog'
     | 'started.deauthentication'
+    | 'started.deauthentication.processing'
+    | 'started.deauthentication.confirmation'
     | 'started.authenticated'
     | 'started.authenticated.game'
     | 'started.authenticated.game.movements'
@@ -203,6 +218,7 @@ export interface Typegen0 {
                     google?: 'login' | 'register';
                     apple?: 'login' | 'register';
                   };
+              deauthentication?: 'processing' | 'confirmation';
               authenticated?:
                 | 'game'
                 | {

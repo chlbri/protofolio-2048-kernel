@@ -3,7 +3,7 @@ import { number, tuple } from 'zod';
 
 export const cardPropsSchema = number()
   .optional()
-  .refine(arg => arg === undefined || (arg % 2 === 0 && arg >= 2));
+  .refine(arg => arg === undefined || (!(arg & (arg - 1)) && arg >= 2));
 
 export type CardProps = TypeOf<typeof cardPropsSchema>;
 
@@ -26,4 +26,4 @@ export const cardsSchema = tuple([
   cardPropsSchema,
 ]);
 
-export type CardsSchema = TypeOf<typeof cardsSchema>;
+export type Cards = TypeOf<typeof cardsSchema>;
