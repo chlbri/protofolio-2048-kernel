@@ -198,11 +198,11 @@ export interface Typegen0 {
     | 'started.authenticated.game.movements.fixed'
     | 'started.authenticated.game.movements.possibleMoves'
     | 'started.authenticated.game.movements.moving'
-    | 'started.authenticated.game.movements.gameOver'
-    | 'started.authenticated.game.movements.blocked'
-    | 'started.authenticated.game.movements.blocked.idle'
-    | 'started.authenticated.game.movements.blocked.addFirstRandom'
-    | 'started.authenticated.game.movements.blocked.addSecondRandom'
+    | 'started.authenticated.game.movements.canMove'
+    | 'started.authenticated.game.movements.gameover'
+    | 'started.authenticated.game.movements.gameover.idle'
+    | 'started.authenticated.game.movements.gameover.addFirstRandom'
+    | 'started.authenticated.game.movements.gameover.addSecondRandom'
     | {
         starting?:
           | 'idle'
@@ -238,10 +238,10 @@ export interface Typegen0 {
                             | 'fixed'
                             | 'possibleMoves'
                             | 'moving'
-                            | 'gameOver'
-                            | 'blocked'
+                            | 'canMove'
+                            | 'gameover'
                             | {
-                                blocked?:
+                                gameover?:
                                   | 'idle'
                                   | 'addFirstRandom'
                                   | 'addSecondRandom';

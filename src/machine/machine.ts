@@ -396,7 +396,7 @@ export const machine = createMachine(
                       possibleMoves: {
                         always: {
                           actions: 'assignPossibleMoves',
-                          target: 'gameOver',
+                          target: 'canMove',
                         },
                         exit: 'inc',
                       },
@@ -413,17 +413,17 @@ export const machine = createMachine(
                           },
                         },
                       },
-                      gameOver: {
+                      canMove: {
                         always: [
                           {
                             cond: 'canMove',
                             target: 'fixed',
                           },
-                          'blocked',
+                          'gameover',
                         ],
                         exit: 'inc',
                       },
-                      blocked: {
+                      gameover: {
                         initial: 'idle',
                         states: {
                           idle: {
