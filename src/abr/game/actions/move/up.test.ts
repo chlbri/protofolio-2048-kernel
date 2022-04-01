@@ -1,47 +1,28 @@
 import { ttest } from '@bemedev/test';
+import { cards1 } from '../helpers/setupTests';
 import { compare, createBoardTest } from './setupTests';
 import { _moveUp } from './up';
 
 describe('Move Up', () => {
   // #region Board Tests
-  const test1 = createBoardTest(
-    [
-      16,
-      4,
-      4,
-      2,
-      8,
-      undefined,
-      undefined,
-      2,
-      8,
-      undefined,
-      4,
-      8,
-      2,
-      4,
-      undefined,
-      undefined,
-    ],
-    [
-      16,
-      8,
-      8,
-      4,
-      16,
-      undefined,
-      undefined,
-      8,
-      2,
-      undefined,
-      undefined,
-      undefined,
-      undefined,
-      undefined,
-      undefined,
-      undefined,
-    ],
-  );
+  const test1 = createBoardTest(cards1, [
+    16,
+    8,
+    8,
+    4,
+    16,
+    undefined,
+    undefined,
+    8,
+    2,
+    undefined,
+    undefined,
+    undefined,
+    undefined,
+    undefined,
+    undefined,
+    undefined,
+  ]);
 
   // #endregion
   ttest({
