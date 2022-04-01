@@ -21,7 +21,6 @@ export function _moveDown(ctx: TContext): Cards {
   };
 
   const cards = mergeColumnsToCards(columns);
-  console.log('OK =>', cards);
 
   return cards;
 }

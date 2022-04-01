@@ -9,7 +9,6 @@ setTimeout(() => {
 }, 200);
 
 transi.subscribe(state => {
-  // return console.log(state.value);
   const out = {
     value: state.value,
     cards: state.context.back.game.cards,

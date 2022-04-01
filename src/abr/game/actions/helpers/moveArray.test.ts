@@ -91,8 +91,6 @@ describe('Move', () => {
       },
     ],
     compare: (arg1, arg2) => {
-      console.log('Log =>', arg1);
-
       return JSON.stringify(arg1) === JSON.stringify(arg2);
     },
   });

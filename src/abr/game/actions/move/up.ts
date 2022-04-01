@@ -29,9 +29,6 @@ export function _moveUp(ctx: TContext): Cards {
   };
 
   const cards = mergeColumnsToCards(columns);
-  console.log('OK =>', cards);
-
-  ctx.back.game.cards = cards;
 
   return cards;
 }

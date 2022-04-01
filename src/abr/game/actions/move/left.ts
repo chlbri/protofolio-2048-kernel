@@ -22,7 +22,6 @@ export function _moveLeft(ctx: TContext): Cards {
   };
 
   const cards = mergeRowsToCards(rows);
-  console.log('OK =>', cards);
 
   return cards;
 }
