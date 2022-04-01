@@ -210,7 +210,7 @@ export function createF(value: MoveArray) {
       conditions: {
         fourthIsMerged: ({ merged: { fourth } }) => fourth,
         fourthIsNotMerged: ({ merged: { fourth } }) => !fourth,
-        thirdIsMerged: ({ merged: { third } }) => third,
+        // thirdIsMerged: ({ merged: { third } }) => third,
         thirdIsNotMerged: ({ merged: { third } }) => !third,
         fourthIsEmpty: ({ value: { fourth } }) => !fourth,
         thirdIsEmpty: ({ value: { third } }) => !third,

@@ -2,7 +2,7 @@ import { ttest } from '@bemedev/test';
 import { _moveLeft } from './left';
 import { compare, createBoardTest } from './setupTests';
 
-describe('Move Right', () => {
+describe('Move Left', () => {
   // #region Board Tests
   const test1 = createBoardTest(
     [

@@ -2,7 +2,7 @@ import { ttest } from '@bemedev/test';
 import { moveArray } from './moveArray';
 
 describe('Move', () => {
-  ttest.concurrent({
+  ttest({
     func: moveArray,
     tests: [
       {

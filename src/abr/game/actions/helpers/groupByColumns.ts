@@ -1,7 +1,7 @@
-import type { Cards, Context } from '../../../../ebr';
+import type { Cards, TContext } from '../../../../ebr';
 import { Cols, colsSchema } from './../../../../ebr/game/actions/columns';
 
-export function groupByColumns(ctx: Context): Cols {
+export function groupByColumns(ctx: TContext): Cols {
   const grid = ctx.back.game.cards;
 
   // #region COLUMNS

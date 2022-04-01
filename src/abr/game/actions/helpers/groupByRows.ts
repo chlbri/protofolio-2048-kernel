@@ -1,8 +1,8 @@
 import { Cards } from '../../../../ebr';
-import type { Context } from '../../../../ebr/context';
+import type { TContext } from '../../../../ebr/context';
 import { Rows, rowsSchema } from '../../../../ebr/game/actions/rows';
 
-export function groupByRows(ctx: Context): Rows {
+export function groupByRows(ctx: TContext): Rows {
   const grid = ctx.back.game.cards;
 
   // #region ROWS

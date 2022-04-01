@@ -9,6 +9,7 @@ export function createBoardTest(actual: Cards, expected: Cards) {
           score: 0,
         },
       },
+      iterator: 0,
     },
     expected,
   };

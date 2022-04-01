@@ -1,9 +1,9 @@
-import type { TypeOf } from 'zod';
-import { object } from 'zod';
+import { number, object, TypeOf } from 'zod';
 import { gameSchema } from './game';
 
 export const contextSchema = object({
   back: object({ game: gameSchema }),
+  iterator: number(),
 });
 
-export type Context = TypeOf<typeof contextSchema>;
+export type TContext = TypeOf<typeof contextSchema>;
