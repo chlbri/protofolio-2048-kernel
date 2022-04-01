@@ -2,5 +2,5 @@
 . "$(dirname "$0")/_/husky.sh"
 
 tsc
-pnpm pretty-quick --staged --pattern "**/*.*(ts|tsx)"
+pretty-quick --staged --pattern "**/*.*(ts|tsx)"
 git add .
