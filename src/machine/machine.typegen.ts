@@ -18,7 +18,6 @@ export interface Typegen0 {
     moveLeft: 'MOVE_LEFT';
     moveRight: 'MOVE_RIGHT';
     inc: 'xstate.init';
-    'i,nc': 'xstate.init';
     startAnimation: 'MOVE_UP' | 'MOVE_DOWN' | 'MOVE_LEFT' | 'MOVE_RIGHT';
     addScore: 'MOVE_UP' | 'MOVE_DOWN' | 'MOVE_LEFT' | 'MOVE_RIGHT';
   };
@@ -114,18 +113,9 @@ export interface Typegen0 {
       | 'addLogByAppleError'
       | 'addRegisterByAppleError'
       | 'reportErrorDeauthentication'
-      | 'moveUp'
-      | 'moveDown'
-      | 'moveLeft'
-      | 'moveRight'
-      | 'inc'
-      | 'i,nc'
       | 'startAnimation'
       | 'addScore';
     services:
-      | 'checkEnvironmentVariables'
-      | 'prepare'
-      | 'start'
       | 'logByEmailPassword'
       | 'registerByEmailPassword'
       | 'logByFacebook'
@@ -134,14 +124,8 @@ export interface Typegen0 {
       | 'registerByGoogle'
       | 'logByApple'
       | 'registerByApple'
-      | 'autoLog'
       | 'deauthenticate';
-    guards:
-      | 'EnvironmentsVariablesAreLoaded'
-      | 'canMoveUp'
-      | 'canMoveDown'
-      | 'canMoveLeft'
-      | 'canMoveRight';
+    guards: never;
     delays: never;
   };
   eventsCausingServices: {
@@ -159,13 +143,7 @@ export interface Typegen0 {
     autoLog: 'xstate.after(timeBeforeAutolog)#mainMachine.started.notAuthenticated';
     deauthenticate: 'xstate.init';
   };
-  eventsCausingGuards: {
-    EnvironmentsVariablesAreLoaded: 'done.invoke.mainMachine.checkingEnvVariables:invocation[0]';
-    canMoveUp: 'MOVE_UP';
-    canMoveDown: 'MOVE_DOWN';
-    canMoveLeft: 'MOVE_LEFT';
-    canMoveRight: 'MOVE_RIGHT';
-  };
+  eventsCausingGuards: {};
   eventsCausingDelays: {
     timeBeforeAutolog: 'xstate.init';
     moveDuration: 'xstate.init';

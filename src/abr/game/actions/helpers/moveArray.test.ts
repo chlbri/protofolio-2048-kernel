@@ -1,9 +1,9 @@
 import { ttest } from '@bemedev/test';
-import { move } from './moveArray';
+import { moveArray } from './moveArray';
 
 describe('Move', () => {
-  ttest.concurrent({
-    func: move,
+  ttest({
+    func: moveArray,
     tests: [
       {
         args: { third: 2, fourth: 2 },

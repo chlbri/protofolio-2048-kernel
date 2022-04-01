@@ -1,5 +1,8 @@
-import { createMachine } from 'xstate';
-import { Context } from '../ebr/context';
+import { asyncVoidNothing } from '@bemedev/fstate/helpers';
+import { createMachine, interpret, StateMachine } from 'xstate';
+import { inc, moveDown, moveLeft, moveRight, moveUp } from '../abr';
+import { TEvent } from '../abr/game/events';
+import type { TContext } from '../ebr/context';
 import { context } from './context';
 
 export const machine = createMachine(
@@ -7,11 +10,14 @@ export const machine = createMachine(
     context,
     tsTypes: {} as import('./machine.typegen').Typegen0,
     schema: {
-      context: {} as Context,
+      context: {} as TContext,
+      events: {} as TEvent,
     },
     id: 'mainMachine',
+    initial: 'idle',
     states: {
       idle: {
+        exit: 'inc',
         description: 'When the app is not launched',
         on: {
           START: {
@@ -26,7 +32,6 @@ export const machine = createMachine(
           src: 'checkEnvironmentVariables',
           onDone: [
             {
-              cond: 'EnvironmentsVariablesAreLoaded',
               target: 'preparing',
             },
           ],
@@ -190,7 +195,7 @@ export const machine = createMachine(
                 type: 'parallel',
                 states: {
                   login: {
-                    exit: 'i,nc',
+                    exit: 'inc',
                     invoke: {
                       src: 'logByGoogle',
                       onDone: [
@@ -320,28 +325,25 @@ export const machine = createMachine(
                 type: 'parallel',
                 states: {
                   movements: {
+                    initial: 'fixed',
                     states: {
                       fixed: {
                         exit: 'inc',
                         on: {
                           MOVE_UP: {
                             actions: 'moveUp',
-                            cond: 'canMoveUp',
                             target: 'moving',
                           },
                           MOVE_DOWN: {
                             actions: 'moveDown',
-                            cond: 'canMoveDown',
                             target: 'moving',
                           },
                           MOVE_LEFT: {
                             actions: 'moveLeft',
-                            cond: 'canMoveLeft',
                             target: 'moving',
                           },
                           MOVE_RIGHT: {
                             actions: 'moveRight',
-                            cond: 'canMoveRight',
                             target: 'moving',
                           },
                         },
@@ -355,7 +357,6 @@ export const machine = createMachine(
                           },
                         },
                       },
-                      
                     },
                   },
                 },
@@ -376,10 +377,33 @@ export const machine = createMachine(
       timeBeforeAutolog: 70,
       moveDuration: 100,
     },
-    actions: {},
-    services: {},
+    actions: {
+      inc,
+      moveUp,
+      moveDown,
+      moveLeft,
+      moveRight,
+    },
+    services: {
+      checkEnvironmentVariables: asyncVoidNothing,
+      prepare: asyncVoidNothing,
+      start: asyncVoidNothing as any,
+      autoLog: asyncVoidNothing as any,
+    },
     guards: {},
   },
 );
 
 export type Machine = typeof machine;
+
+export type S_Machine = StateMachine<
+  TContext,
+  any,
+  TEvent,
+  any,
+  any,
+  any,
+  any
+>;
+
+
