@@ -8,6 +8,7 @@
   "typings": "lib/index.d.ts",
   "scripts": {
     "tsc": "tsc",
+    "tsc-w": "tsc -w",
     "build": "pnpm run tsc && pnpm run lint",
     "test": "jest",
     "prettier": "prettier --write \"src/**/*.{ts,tsx}\"",
