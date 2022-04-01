@@ -326,22 +326,18 @@ export const machine = createMachine(
                         on: {
                           MOVE_UP: {
                             actions: 'moveUp',
-                            cond: 'canMoveUp',
                             target: 'moving',
                           },
                           MOVE_DOWN: {
                             actions: 'moveDown',
-                            cond: 'canMoveDown',
                             target: 'moving',
                           },
                           MOVE_LEFT: {
                             actions: 'moveLeft',
-                            cond: 'canMoveLeft',
                             target: 'moving',
                           },
                           MOVE_RIGHT: {
                             actions: 'moveRight',
-                            cond: 'canMoveRight',
                             target: 'moving',
                           },
                         },

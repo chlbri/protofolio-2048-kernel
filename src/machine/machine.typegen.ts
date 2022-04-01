@@ -136,12 +136,7 @@ export interface Typegen0 {
       | 'registerByApple'
       | 'autoLog'
       | 'deauthenticate';
-    guards:
-      | 'EnvironmentsVariablesAreLoaded'
-      | 'canMoveUp'
-      | 'canMoveDown'
-      | 'canMoveLeft'
-      | 'canMoveRight';
+    guards: 'EnvironmentsVariablesAreLoaded';
     delays: never;
   };
   eventsCausingServices: {
@@ -161,10 +156,6 @@ export interface Typegen0 {
   };
   eventsCausingGuards: {
     EnvironmentsVariablesAreLoaded: 'done.invoke.mainMachine.checkingEnvVariables:invocation[0]';
-    canMoveUp: 'MOVE_UP';
-    canMoveDown: 'MOVE_DOWN';
-    canMoveLeft: 'MOVE_LEFT';
-    canMoveRight: 'MOVE_RIGHT';
   };
   eventsCausingDelays: {
     timeBeforeAutolog: 'xstate.init';

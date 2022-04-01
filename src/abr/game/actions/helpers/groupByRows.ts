@@ -1,7 +1,8 @@
+import { Cards } from '../../../../ebr';
 import type { Context } from '../../../../ebr/context';
-import { rowsSchema } from '../../../../ebr/game/actions/rows';
+import { Rows, rowsSchema } from '../../../../ebr/game/actions/rows';
 
-export function groupByRows(ctx: Context) {
+export function groupByRows(ctx: Context): Rows {
   const grid = ctx.back.game.cards;
 
   // #region ROWS
@@ -32,4 +33,25 @@ export function groupByRows(ctx: Context) {
   // #endregion
 
   return rowsSchema.parse({ row1, row2, row3, row4 });
+}
+
+export function mergeRowsToCards(rows: Rows): Cards {
+  return [
+    rows.row1.first,
+    rows.row1.second,
+    rows.row1.third,
+    rows.row1.fourth,
+    rows.row2.first,
+    rows.row2.second,
+    rows.row2.third,
+    rows.row2.fourth,
+    rows.row3.first,
+    rows.row3.second,
+    rows.row3.third,
+    rows.row3.fourth,
+    rows.row4.first,
+    rows.row4.second,
+    rows.row4.third,
+    rows.row4.fourth,
+  ];
 }
