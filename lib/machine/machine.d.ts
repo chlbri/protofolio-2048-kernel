@@ -7,6 +7,13 @@ export declare const machine: StateMachine<{
             statitics?: {} | undefined;
             cards: [number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined];
             score: number;
+            moves: number;
+            possibleMoves: {
+                left: boolean;
+                right: boolean;
+                up: boolean;
+                down: boolean;
+            };
         };
     };
     iterator: number;
@@ -18,6 +25,13 @@ export declare const machine: StateMachine<{
                 statitics?: {} | undefined;
                 cards: [number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined];
                 score: number;
+                moves: number;
+                possibleMoves: {
+                    left: boolean;
+                    right: boolean;
+                    up: boolean;
+                    down: boolean;
+                };
             };
         };
         iterator: number;
@@ -92,7 +106,7 @@ export declare const machine: StateMachine<{
         'xstate.init': {
             type: "xstate.init";
         };
-    }, "" | "error.platform.mainMachine.checkingEnvVariables:invocation[0]" | "error.platform.mainMachine.starting.idle:invocation[0]" | "error.platform.mainMachine.started.authentication.emailPassword.login:invocation[0]" | "error.platform.mainMachine.started.authentication.emailPassword.register:invocation[0]" | "error.platform.mainMachine.started.authentication.facebook.login:invocation[0]" | "error.platform.mainMachine.started.authentication.facebook.register:invocation[0]" | "error.platform.mainMachine.started.authentication.google.login:invocation[0]" | "error.platform.mainMachine.started.authentication.google.register:invocation[0]" | "error.platform.mainMachine.started.authentication.apple.login:invocation[0]" | "error.platform.mainMachine.started.authentication.apple.register:invocation[0]" | "error.platform.mainMachine.started.deauthentication.processing:invocation[0]" | "xstate.init" | "error.platform.mainMachine.started.authentication.autoLog:invocation[0]" | "done.invoke.mainMachine.started.deauthentication.processing:invocation[0]" | "done.invoke.mainMachine.checkingEnvVariables:invocation[0]" | "xstate.after(timeBeforeAutolog)#mainMachine.started.notAuthenticated">;
+    }, "" | "error.platform.mainMachine.checkingEnvVariables:invocation[0]" | "error.platform.mainMachine.starting.idle:invocation[0]" | "error.platform.mainMachine.started.authentication.emailPassword.login:invocation[0]" | "error.platform.mainMachine.started.authentication.emailPassword.register:invocation[0]" | "error.platform.mainMachine.started.authentication.facebook.login:invocation[0]" | "error.platform.mainMachine.started.authentication.facebook.register:invocation[0]" | "error.platform.mainMachine.started.authentication.google.login:invocation[0]" | "error.platform.mainMachine.started.authentication.google.register:invocation[0]" | "error.platform.mainMachine.started.authentication.apple.login:invocation[0]" | "error.platform.mainMachine.started.authentication.apple.register:invocation[0]" | "error.platform.mainMachine.started.deauthentication.processing:invocation[0]" | "error.platform.mainMachine.started.authentication.autoLog:invocation[0]" | "done.invoke.mainMachine.started.deauthentication.processing:invocation[0]" | "done.invoke.mainMachine.checkingEnvVariables:invocation[0]" | "xstate.after(timeBeforeAutolog)#mainMachine.started.notAuthenticated" | "xstate.init">;
 }>;
 export declare type Machine = typeof machine;
 export declare type S_Machine = StateMachine<TContext, any, TEvent, any, any, any, any>;

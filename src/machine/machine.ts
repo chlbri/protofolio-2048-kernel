@@ -1,6 +1,18 @@
 import { asyncVoidNothing } from '@bemedev/fstate/helpers';
 import { createMachine, StateMachine } from 'xstate';
-import { inc, moveDown, moveLeft, moveRight, moveUp } from '../abr';
+import {
+  assignPossibleMoves,
+  canMoveDown,
+  canMoveLeft,
+  canMoveRight,
+  canMoveUp,
+  inc,
+  moveDown,
+  moveLeft,
+  moveRight,
+  moveUp,
+  rinitGame,
+} from '../abr';
 import { addRandomNumber } from '../abr/game/actions/random';
 import { TEvent } from '../abr/game/events';
 import type { TContext } from '../ebr/context';
@@ -81,6 +93,12 @@ export const machine = createMachine(
             exit: 'inc',
             always: {
               actions: 'addRandomNumber',
+              target: 'possibleMoves',
+            },
+          },
+          possibleMoves: {
+            always: {
+              actions: 'assignPossibleMoves',
               target: '#started',
             },
           },
@@ -343,6 +361,7 @@ export const machine = createMachine(
             type: 'parallel',
             states: {
               game: {
+                id: 'game',
                 type: 'parallel',
                 states: {
                   movements: {
@@ -352,33 +371,78 @@ export const machine = createMachine(
                         exit: 'inc',
                         on: {
                           MOVE_UP: {
+                            cond: 'canMoveUp',
                             actions: 'moveUp',
-                            target: 'moving',
+                            target: 'possibleMoves',
                           },
                           MOVE_DOWN: {
+                            cond: 'canMoveDown',
                             actions: 'moveDown',
-                            target: 'moving',
+                            target: 'possibleMoves',
                           },
                           MOVE_LEFT: {
+                            cond: 'canMoveLeft',
                             actions: 'moveLeft',
-                            target: 'moving',
+                            target: 'possibleMoves',
                           },
                           MOVE_RIGHT: {
+                            cond: 'canMoveRight',
                             actions: 'moveRight',
-                            target: 'moving',
+                            target: 'possibleMoves',
                           },
                         },
                       },
+                      possibleMoves: {
+                        always: {
+                          actions: 'assignPossibleMoves',
+                          target: 'moving',
+                        },
+                        exit: 'inc',
+                      },
                       moving: {
-                        entry: [
-                          'startAnimation',
-                          'addScore',
-                          'addRandomNumber',
-                        ],
+                        entry: ['startAnimation', 'addScore'],
                         exit: 'inc',
                         after: {
                           moveDuration: {
+                            target: 'canMove',
+                          },
+                        },
+                      },
+                      canMove: {
+                        always: [
+                          {
+                            cond: 'canMove',
                             target: 'fixed',
+                          },
+                          'blocked',
+                        ],
+                        exit: 'inc',
+                      },
+                      blocked: {
+                        initial: 'idle',
+                        states: {
+                          idle: {
+                            on: {
+                              'RINIT.GAME': {
+                                actions: 'rinitGame',
+                                target: 'addFirstRandom',
+                              },
+                            },
+                            exit: 'inc',
+                          },
+                          addFirstRandom: {
+                            exit: 'inc',
+                            always: {
+                              actions: 'addRandomNumber',
+                              target: 'addSecondRandom',
+                            },
+                          },
+                          addSecondRandom: {
+                            exit: 'inc',
+                            always: {
+                              actions: 'addRandomNumber',
+                              target: '#game.movements.possibleMoves',
+                            },
                           },
                         },
                       },
@@ -409,6 +473,8 @@ export const machine = createMachine(
       moveLeft,
       moveRight,
       addRandomNumber,
+      assignPossibleMoves,
+      rinitGame,
     },
     services: {
       checkEnvironmentVariables: asyncVoidNothing,
@@ -416,7 +482,7 @@ export const machine = createMachine(
       start: asyncVoidNothing as any,
       autoLog: asyncVoidNothing as any,
     },
-    guards: {},
+    guards: { canMoveDown, canMoveUp, canMoveRight, canMoveLeft },
   },
 );
 

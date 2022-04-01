@@ -7,6 +7,13 @@ export declare const moveLeft: import("xstate").AssignAction<{
             statitics?: {} | undefined;
             cards: [number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined];
             score: number;
+            moves: number;
+            possibleMoves: {
+                left: boolean;
+                right: boolean;
+                up: boolean;
+                down: boolean;
+            };
         };
     };
     iterator: number;
