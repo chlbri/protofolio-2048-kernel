@@ -1,2 +1,1 @@
-import { Cards } from '../../ebr/game/card';
-export declare const cards: Cards;
+export declare const cards: [number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined];

@@ -3,7 +3,8 @@ export interface Typegen0 {
     eventsCausingActions: {
         addNotEnvVariablesError: 'error.platform.mainMachine.checkingEnvVariables:invocation[0]';
         addErrorStarting: 'error.platform.mainMachine.starting.idle:invocation[0]';
-        addRandomNumber: '' | 'MOVE_UP' | 'MOVE_DOWN' | 'MOVE_LEFT' | 'MOVE_RIGHT';
+        addRandomNumber: '';
+        assignPossibleMoves: '';
         addLogByEmailPasswordError: 'error.platform.mainMachine.started.authentication.emailPassword.login:invocation[0]';
         addRegisterByEmailPAsswordError: 'error.platform.mainMachine.started.authentication.emailPassword.register:invocation[0]';
         adLogByFacebookError: 'error.platform.mainMachine.started.authentication.facebook.login:invocation[0]';
@@ -17,9 +18,10 @@ export interface Typegen0 {
         moveDown: 'MOVE_DOWN';
         moveLeft: 'MOVE_LEFT';
         moveRight: 'MOVE_RIGHT';
+        rinitGame: 'RINIT.GAME';
         inc: 'xstate.init';
-        startAnimation: 'MOVE_UP' | 'MOVE_DOWN' | 'MOVE_LEFT' | 'MOVE_RIGHT';
-        addScore: 'MOVE_UP' | 'MOVE_DOWN' | 'MOVE_LEFT' | 'MOVE_RIGHT';
+        startAnimation: '';
+        addScore: '';
     };
     internalEvents: {
         'error.platform.mainMachine.checkingEnvVariables:invocation[0]': {
@@ -108,7 +110,7 @@ export interface Typegen0 {
     missingImplementations: {
         actions: 'addNotEnvVariablesError' | 'addErrorStarting' | 'addLogByEmailPasswordError' | 'addRegisterByEmailPAsswordError' | 'adLogByFacebookError' | 'addRegisterByPasswordError' | 'addLogByGoogleError' | 'addRegisterByGoogleError' | 'addLogByAppleError' | 'addRegisterByAppleError' | 'reportErrorDeauthentication' | 'startAnimation' | 'addScore';
         services: 'logByEmailPassword' | 'registerByEmailPassword' | 'logByFacebook' | 'registerByFacebook' | 'logByGoogle' | 'registerByGoogle' | 'logByApple' | 'registerByApple' | 'deauthenticate';
-        guards: never;
+        guards: 'canMove';
         delays: never;
     };
     eventsCausingServices: {
@@ -126,13 +128,19 @@ export interface Typegen0 {
         autoLog: 'xstate.after(timeBeforeAutolog)#mainMachine.started.notAuthenticated';
         deauthenticate: 'xstate.init';
     };
-    eventsCausingGuards: {};
+    eventsCausingGuards: {
+        canMoveUp: 'MOVE_UP';
+        canMoveDown: 'MOVE_DOWN';
+        canMoveLeft: 'MOVE_LEFT';
+        canMoveRight: 'MOVE_RIGHT';
+        canMove: '';
+    };
     eventsCausingDelays: {
         timeBeforeAutolog: 'xstate.init';
         moveDuration: 'xstate.init';
     };
-    matchesStates: 'idle' | 'checkingEnvVariables' | 'preparing' | 'starting' | 'starting.idle' | 'starting.addFirstRandom' | 'starting.addSecondRandom' | 'started' | 'started.notAuthenticated' | 'started.authentication' | 'started.authentication.emailPassword' | 'started.authentication.emailPassword.login' | 'started.authentication.emailPassword.register' | 'started.authentication.facebook' | 'started.authentication.facebook.login' | 'started.authentication.facebook.register' | 'started.authentication.google' | 'started.authentication.google.login' | 'started.authentication.google.register' | 'started.authentication.apple' | 'started.authentication.apple.login' | 'started.authentication.apple.register' | 'started.authentication.autoLog' | 'started.deauthentication' | 'started.deauthentication.processing' | 'started.deauthentication.confirmation' | 'started.authenticated' | 'started.authenticated.game' | 'started.authenticated.game.movements' | 'started.authenticated.game.movements.fixed' | 'started.authenticated.game.movements.moving' | {
-        starting?: 'idle' | 'addFirstRandom' | 'addSecondRandom';
+    matchesStates: 'idle' | 'checkingEnvVariables' | 'preparing' | 'starting' | 'starting.idle' | 'starting.addFirstRandom' | 'starting.addSecondRandom' | 'starting.possibleMoves' | 'started' | 'started.notAuthenticated' | 'started.authentication' | 'started.authentication.emailPassword' | 'started.authentication.emailPassword.login' | 'started.authentication.emailPassword.register' | 'started.authentication.facebook' | 'started.authentication.facebook.login' | 'started.authentication.facebook.register' | 'started.authentication.google' | 'started.authentication.google.login' | 'started.authentication.google.register' | 'started.authentication.apple' | 'started.authentication.apple.login' | 'started.authentication.apple.register' | 'started.authentication.autoLog' | 'started.deauthentication' | 'started.deauthentication.processing' | 'started.deauthentication.confirmation' | 'started.authenticated' | 'started.authenticated.game' | 'started.authenticated.game.movements' | 'started.authenticated.game.movements.fixed' | 'started.authenticated.game.movements.possibleMoves' | 'started.authenticated.game.movements.moving' | 'started.authenticated.game.movements.canMove' | 'started.authenticated.game.movements.blocked' | 'started.authenticated.game.movements.blocked.idle' | 'started.authenticated.game.movements.blocked.addFirstRandom' | 'started.authenticated.game.movements.blocked.addSecondRandom' | {
+        starting?: 'idle' | 'addFirstRandom' | 'addSecondRandom' | 'possibleMoves';
         started?: 'notAuthenticated' | 'authentication' | 'deauthentication' | 'authenticated' | {
             authentication?: 'emailPassword' | 'facebook' | 'google' | 'apple' | 'autoLog' | {
                 emailPassword?: 'login' | 'register';
@@ -143,7 +151,9 @@ export interface Typegen0 {
             deauthentication?: 'processing' | 'confirmation';
             authenticated?: 'game' | {
                 game?: 'movements' | {
-                    movements?: 'fixed' | 'moving';
+                    movements?: 'fixed' | 'possibleMoves' | 'moving' | 'canMove' | 'blocked' | {
+                        blocked?: 'idle' | 'addFirstRandom' | 'addSecondRandom';
+                    };
                 };
             };
         };

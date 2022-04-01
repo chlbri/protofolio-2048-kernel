@@ -6,6 +6,13 @@ export declare const _addRandomNumber: (ctx: TContext) => {
             statitics?: {} | undefined;
             cards: [number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined];
             score: number;
+            moves: number;
+            possibleMoves: {
+                left: boolean;
+                right: boolean;
+                up: boolean;
+                down: boolean;
+            };
         };
     };
     iterator: number;
@@ -16,6 +23,13 @@ export declare const addRandomNumber: import("xstate").AssignAction<{
             statitics?: {} | undefined;
             cards: [number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined, number | undefined];
             score: number;
+            moves: number;
+            possibleMoves: {
+                left: boolean;
+                right: boolean;
+                up: boolean;
+                down: boolean;
+            };
         };
     };
     iterator: number;

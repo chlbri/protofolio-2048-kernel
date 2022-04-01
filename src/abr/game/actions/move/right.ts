@@ -3,7 +3,9 @@ import { Cards } from '../../../../ebr';
 import type { TContext } from '../../../../ebr/context';
 import { Rows } from '../../../../ebr/game/actions/rows';
 import { groupByRows, mergeRowsToCards } from '../helpers';
+import { boardHasChanged } from '../helpers/boardHasChanged';
 import { moveArray } from '../helpers/moveArray';
+import { _addRandomNumber } from '../random';
 
 export function _moveRight(ctx: TContext): Cards {
   const _rows = groupByRows(ctx);
