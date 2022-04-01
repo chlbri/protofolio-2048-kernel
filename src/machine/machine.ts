@@ -1,5 +1,6 @@
 import { createMachine } from 'xstate';
-import { Context } from '../ebr/context';
+import { moveDown, moveLeft, moveRight, moveUp } from '../abr';
+import type { Context } from '../ebr/context';
 import { context } from './context';
 
 export const machine = createMachine(
@@ -351,7 +352,6 @@ export const machine = createMachine(
                           },
                         },
                       },
-                      
                     },
                   },
                 },
@@ -372,7 +372,12 @@ export const machine = createMachine(
       timeBeforeAutolog: 70,
       moveDuration: 100,
     },
-    actions: {},
+    actions: {
+      moveUp,
+      moveDown,
+      moveLeft,
+      moveRight,
+    },
     services: {},
     guards: {},
   },

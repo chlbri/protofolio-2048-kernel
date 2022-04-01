@@ -1,5 +1,5 @@
 import { ttest } from '@bemedev/test';
-import { moveLeft } from './left';
+import { _moveLeft } from './left';
 import { compare, createBoardTest } from './setupTests';
 
 describe('Move Right', () => {
@@ -45,7 +45,7 @@ describe('Move Right', () => {
 
   // #endregion
   ttest({
-    func: moveLeft,
+    func: _moveLeft,
     tests: [test1],
     compare,
   });

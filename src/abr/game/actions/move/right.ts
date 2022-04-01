@@ -1,9 +1,11 @@
+import { assign } from '@xstate/immer';
+import { Cards } from '../../../../ebr';
 import type { Context } from '../../../../ebr/context';
 import { Rows } from '../../../../ebr/game/actions/rows';
 import { groupByRows, mergeRowsToCards } from '../helpers';
 import { moveArray } from '../helpers/moveArray';
 
-export function moveRight(ctx: Context): Context {
+export function _moveRight(ctx: Context): Cards {
   const _rows = groupByRows(ctx);
 
   const row1 = moveArray(_rows.row1);
@@ -19,9 +21,9 @@ export function moveRight(ctx: Context): Context {
   };
 
   const cards = mergeRowsToCards(rows);
-  console.log('OK =>', cards);
-
-  ctx.back.game.cards = cards;
-
-  return ctx;
+  return cards;
 }
+
+export const moveRight = assign<Context, never>(ctx => {
+  ctx.back.game.cards = _moveRight(ctx);
+});

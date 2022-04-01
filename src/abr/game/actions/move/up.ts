@@ -1,10 +1,12 @@
+import { assign } from '@xstate/immer';
+import { Cards } from '../../../../ebr';
 import type { Context } from '../../../../ebr/context';
 import { Cols } from '../../../../ebr/game/actions/columns';
 import { groupByColumns, mergeColumnsToCards } from '../helpers';
 import { inverseMoveArray } from '../helpers/inverseMoveArray';
 import { moveArray } from '../helpers/moveArray';
 
-export function moveUp(ctx: Context): Context {
+export function _moveUp(ctx: Context): Cards {
   const _columns = groupByColumns(ctx);
   const col1 = inverseMoveArray(
     moveArray(inverseMoveArray(_columns.col1)),
@@ -31,5 +33,9 @@ export function moveUp(ctx: Context): Context {
 
   ctx.back.game.cards = cards;
 
-  return ctx;
+  return cards;
 }
+
+export const moveUp = assign<Context, never>(ctx => {
+  ctx.back.game.cards = _moveUp(ctx);
+});

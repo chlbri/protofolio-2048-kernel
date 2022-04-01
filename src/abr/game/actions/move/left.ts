@@ -1,10 +1,12 @@
+import { assign } from '@xstate/immer';
+import { Cards } from '../../../../ebr';
 import type { Context } from '../../../../ebr/context';
 import { Rows } from '../../../../ebr/game/actions/rows';
 import { groupByRows, mergeRowsToCards } from '../helpers';
 import { inverseMoveArray } from '../helpers/inverseMoveArray';
 import { moveArray } from '../helpers/moveArray';
 
-export function moveLeft(ctx: Context): Context {
+export function _moveLeft(ctx: Context): Cards {
   const _rows = groupByRows(ctx);
 
   const row1 = inverseMoveArray(moveArray(inverseMoveArray(_rows.row1)));
@@ -22,7 +24,9 @@ export function moveLeft(ctx: Context): Context {
   const cards = mergeRowsToCards(rows);
   console.log('OK =>', cards);
 
-  ctx.back.game.cards = cards;
-
-  return ctx;
+  return cards;
 }
+
+export const moveLeft = assign<Context, never>(ctx => {
+  ctx.back.game.cards = _moveLeft(ctx);
+});

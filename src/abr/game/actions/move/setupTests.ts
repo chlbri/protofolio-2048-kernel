@@ -10,17 +10,10 @@ export function createBoardTest(actual: Cards, expected: Cards) {
         },
       },
     },
-    expected: {
-      back: {
-        game: {
-          cards: expected,
-          score: 0,
-        },
-      },
-    },
+    expected,
   };
 }
 
-export const compare = (arg1: any, arg2: any) => {
+export const compare = (arg1: Cards, arg2: any) => {
   return JSON.stringify(arg1) === JSON.stringify(arg2);
 };

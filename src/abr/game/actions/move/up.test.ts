@@ -1,6 +1,6 @@
 import { ttest } from '@bemedev/test';
 import { compare, createBoardTest } from './setupTests';
-import { moveUp } from './up';
+import { _moveUp } from './up';
 
 describe('Move Up', () => {
   // #region Board Tests
@@ -45,7 +45,7 @@ describe('Move Up', () => {
 
   // #endregion
   ttest({
-    func: moveUp,
+    func: _moveUp,
     tests: [test1],
     compare,
   });
