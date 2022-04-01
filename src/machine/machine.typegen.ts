@@ -130,7 +130,7 @@ export interface Typegen0 {
       | 'logByApple'
       | 'registerByApple'
       | 'deauthenticate';
-    guards: 'canMove';
+    guards: never;
     delays: never;
   };
   eventsCausingServices: {

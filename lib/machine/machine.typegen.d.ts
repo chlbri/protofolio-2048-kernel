@@ -110,7 +110,7 @@ export interface Typegen0 {
     missingImplementations: {
         actions: 'addNotEnvVariablesError' | 'addErrorStarting' | 'addLogByEmailPasswordError' | 'addRegisterByEmailPAsswordError' | 'adLogByFacebookError' | 'addRegisterByPasswordError' | 'addLogByGoogleError' | 'addRegisterByGoogleError' | 'addLogByAppleError' | 'addRegisterByAppleError' | 'reportErrorDeauthentication' | 'startAnimation' | 'addScore';
         services: 'logByEmailPassword' | 'registerByEmailPassword' | 'logByFacebook' | 'registerByFacebook' | 'logByGoogle' | 'registerByGoogle' | 'logByApple' | 'registerByApple' | 'deauthenticate';
-        guards: 'canMove';
+        guards: never;
         delays: never;
     };
     eventsCausingServices: {
