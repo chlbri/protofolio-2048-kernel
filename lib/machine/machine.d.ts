@@ -29,6 +29,13 @@ export declare const machine: StateMachine<{
             type: "error.platform.mainMachine.checkingEnvVariables:invocation[0]";
             data: unknown;
         };
+        'error.platform.mainMachine.starting.idle:invocation[0]': {
+            type: "error.platform.mainMachine.starting.idle:invocation[0]";
+            data: unknown;
+        };
+        '': {
+            type: "";
+        };
         'error.platform.mainMachine.started.authentication.emailPassword.login:invocation[0]': {
             type: "error.platform.mainMachine.started.authentication.emailPassword.login:invocation[0]";
             data: unknown;
@@ -79,18 +86,13 @@ export declare const machine: StateMachine<{
             data: unknown;
             __tip: "See the XState TS docs to learn how to strongly type this.";
         };
-        'done.invoke.mainMachine.preparing:invocation[0]': {
-            type: "done.invoke.mainMachine.preparing:invocation[0]";
-            data: unknown;
-            __tip: "See the XState TS docs to learn how to strongly type this.";
-        };
         'xstate.after(timeBeforeAutolog)#mainMachine.started.notAuthenticated': {
             type: "xstate.after(timeBeforeAutolog)#mainMachine.started.notAuthenticated";
         };
         'xstate.init': {
             type: "xstate.init";
         };
-    }, "error.platform.mainMachine.checkingEnvVariables:invocation[0]" | "error.platform.mainMachine.started.authentication.emailPassword.login:invocation[0]" | "error.platform.mainMachine.started.authentication.emailPassword.register:invocation[0]" | "error.platform.mainMachine.started.authentication.facebook.login:invocation[0]" | "error.platform.mainMachine.started.authentication.facebook.register:invocation[0]" | "error.platform.mainMachine.started.authentication.google.login:invocation[0]" | "error.platform.mainMachine.started.authentication.google.register:invocation[0]" | "error.platform.mainMachine.started.authentication.apple.login:invocation[0]" | "error.platform.mainMachine.started.authentication.apple.register:invocation[0]" | "error.platform.mainMachine.started.deauthentication.processing:invocation[0]" | "xstate.init" | "error.platform.mainMachine.started.authentication.autoLog:invocation[0]" | "done.invoke.mainMachine.started.deauthentication.processing:invocation[0]" | "done.invoke.mainMachine.checkingEnvVariables:invocation[0]" | "done.invoke.mainMachine.preparing:invocation[0]" | "xstate.after(timeBeforeAutolog)#mainMachine.started.notAuthenticated">;
+    }, "" | "error.platform.mainMachine.checkingEnvVariables:invocation[0]" | "error.platform.mainMachine.starting.idle:invocation[0]" | "error.platform.mainMachine.started.authentication.emailPassword.login:invocation[0]" | "error.platform.mainMachine.started.authentication.emailPassword.register:invocation[0]" | "error.platform.mainMachine.started.authentication.facebook.login:invocation[0]" | "error.platform.mainMachine.started.authentication.facebook.register:invocation[0]" | "error.platform.mainMachine.started.authentication.google.login:invocation[0]" | "error.platform.mainMachine.started.authentication.google.register:invocation[0]" | "error.platform.mainMachine.started.authentication.apple.login:invocation[0]" | "error.platform.mainMachine.started.authentication.apple.register:invocation[0]" | "error.platform.mainMachine.started.deauthentication.processing:invocation[0]" | "xstate.init" | "error.platform.mainMachine.started.authentication.autoLog:invocation[0]" | "done.invoke.mainMachine.started.deauthentication.processing:invocation[0]" | "done.invoke.mainMachine.checkingEnvVariables:invocation[0]" | "xstate.after(timeBeforeAutolog)#mainMachine.started.notAuthenticated">;
 }>;
 export declare type Machine = typeof machine;
 export declare type S_Machine = StateMachine<TContext, any, TEvent, any, any, any, any>;
