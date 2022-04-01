@@ -2,6 +2,7 @@ import { asyncVoidNothing } from '@bemedev/fstate/helpers';
 import { createMachine, StateMachine } from 'xstate';
 import {
   assignPossibleMoves,
+  canMove,
   canMoveDown,
   canMoveLeft,
   canMoveRight,
@@ -482,7 +483,7 @@ export const machine = createMachine(
       start: asyncVoidNothing as any,
       autoLog: asyncVoidNothing as any,
     },
-    guards: { canMoveDown, canMoveUp, canMoveRight, canMoveLeft },
+    guards: { canMove, canMoveDown, canMoveUp, canMoveRight, canMoveLeft },
   },
 );
 
