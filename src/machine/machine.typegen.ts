@@ -5,7 +5,12 @@ export interface Typegen0 {
   eventsCausingActions: {
     addNotEnvVariablesError: 'error.platform.mainMachine.checkingEnvVariables:invocation[0]';
     addErrorStarting: 'error.platform.mainMachine.starting.idle:invocation[0]';
-    addRandomNumber: '';
+    addRandomNumber:
+      | ''
+      | 'MOVE_UP'
+      | 'MOVE_DOWN'
+      | 'MOVE_LEFT'
+      | 'MOVE_RIGHT';
     assignPossibleMoves: '';
     addLogByEmailPasswordError: 'error.platform.mainMachine.started.authentication.emailPassword.login:invocation[0]';
     addRegisterByEmailPAsswordError: 'error.platform.mainMachine.started.authentication.emailPassword.register:invocation[0]';
@@ -22,8 +27,8 @@ export interface Typegen0 {
     moveRight: 'MOVE_RIGHT';
     rinitGame: 'RINIT.GAME';
     inc: 'xstate.init';
-    startAnimation: '';
-    addScore: '';
+    startAnimation: 'MOVE_UP' | 'MOVE_DOWN' | 'MOVE_LEFT' | 'MOVE_RIGHT';
+    addScore: 'MOVE_UP' | 'MOVE_DOWN' | 'MOVE_LEFT' | 'MOVE_RIGHT';
   };
   internalEvents: {
     'error.platform.mainMachine.checkingEnvVariables:invocation[0]': {
@@ -194,10 +199,10 @@ export interface Typegen0 {
     | 'started.authenticated.game.movements.possibleMoves'
     | 'started.authenticated.game.movements.moving'
     | 'started.authenticated.game.movements.canMove'
-    | 'started.authenticated.game.movements.blocked'
-    | 'started.authenticated.game.movements.blocked.idle'
-    | 'started.authenticated.game.movements.blocked.addFirstRandom'
-    | 'started.authenticated.game.movements.blocked.addSecondRandom'
+    | 'started.authenticated.game.movements.gameover'
+    | 'started.authenticated.game.movements.gameover.idle'
+    | 'started.authenticated.game.movements.gameover.addFirstRandom'
+    | 'started.authenticated.game.movements.gameover.addSecondRandom'
     | {
         starting?:
           | 'idle'
@@ -234,9 +239,9 @@ export interface Typegen0 {
                             | 'possibleMoves'
                             | 'moving'
                             | 'canMove'
-                            | 'blocked'
+                            | 'gameover'
                             | {
-                                blocked?:
+                                gameover?:
                                   | 'idle'
                                   | 'addFirstRandom'
                                   | 'addSecondRandom';

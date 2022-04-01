@@ -374,38 +374,42 @@ export const machine = createMachine(
                           MOVE_UP: {
                             cond: 'canMoveUp',
                             actions: 'moveUp',
-                            target: 'possibleMoves',
+                            target: 'moving',
                           },
                           MOVE_DOWN: {
                             cond: 'canMoveDown',
                             actions: 'moveDown',
-                            target: 'possibleMoves',
+                            target: 'moving',
                           },
                           MOVE_LEFT: {
                             cond: 'canMoveLeft',
                             actions: 'moveLeft',
-                            target: 'possibleMoves',
+                            target: 'moving',
                           },
                           MOVE_RIGHT: {
                             cond: 'canMoveRight',
                             actions: 'moveRight',
-                            target: 'possibleMoves',
+                            target: 'moving',
                           },
                         },
                       },
                       possibleMoves: {
                         always: {
                           actions: 'assignPossibleMoves',
-                          target: 'moving',
+                          target: 'canMove',
                         },
                         exit: 'inc',
                       },
                       moving: {
-                        entry: ['startAnimation', 'addScore'],
+                        entry: [
+                          'startAnimation',
+                          'addScore',
+                          'addRandomNumber',
+                        ],
                         exit: 'inc',
                         after: {
                           moveDuration: {
-                            target: 'canMove',
+                            target: 'possibleMoves',
                           },
                         },
                       },
@@ -415,11 +419,11 @@ export const machine = createMachine(
                             cond: 'canMove',
                             target: 'fixed',
                           },
-                          'blocked',
+                          'gameover',
                         ],
                         exit: 'inc',
                       },
-                      blocked: {
+                      gameover: {
                         initial: 'idle',
                         states: {
                           idle: {
