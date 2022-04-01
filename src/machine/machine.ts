@@ -1,6 +1,7 @@
 import { asyncVoidNothing } from '@bemedev/fstate/helpers';
-import { createMachine, interpret, StateMachine } from 'xstate';
+import { createMachine, StateMachine } from 'xstate';
 import { inc, moveDown, moveLeft, moveRight, moveUp } from '../abr';
+import { addRandomNumber } from '../abr/game/actions/random';
 import { TEvent } from '../abr/game/events';
 import type { TContext } from '../ebr/context';
 import { context } from './context';
@@ -55,18 +56,38 @@ export const machine = createMachine(
         },
       },
       starting: {
-        exit: 'inc',
         description: 'Caching actions',
-        invoke: {
-          src: 'start',
-          onDone: [
-            {
-              target: 'started',
+        initial: 'idle',
+        states: {
+          idle: {
+            exit: 'inc',
+            invoke: {
+              src: 'start',
+              onDone: 'addFirstRandom',
+              onError: {
+                actions: 'addErrorStarting',
+                target: 'addFirstRandom',
+              },
             },
-          ],
+          },
+          addFirstRandom: {
+            exit: 'inc',
+            always: {
+              actions: 'addRandomNumber',
+              target: 'addSecondRandom',
+            },
+          },
+          addSecondRandom: {
+            exit: 'inc',
+            always: {
+              actions: 'addRandomNumber',
+              target: '#started',
+            },
+          },
         },
       },
       started: {
+        id: 'started',
         description: 'The app is started, first screen',
         initial: 'notAuthenticated',
         states: {
@@ -349,7 +370,11 @@ export const machine = createMachine(
                         },
                       },
                       moving: {
-                        entry: ['startAnimation', 'addScore'],
+                        entry: [
+                          'startAnimation',
+                          'addScore',
+                          'addRandomNumber',
+                        ],
                         exit: 'inc',
                         after: {
                           moveDuration: {
@@ -383,10 +408,11 @@ export const machine = createMachine(
       moveDown,
       moveLeft,
       moveRight,
+      addRandomNumber,
     },
     services: {
       checkEnvironmentVariables: asyncVoidNothing,
-      prepare: asyncVoidNothing,
+      prepare: asyncVoidNothing as any,
       start: asyncVoidNothing as any,
       autoLog: asyncVoidNothing as any,
     },
@@ -405,5 +431,3 @@ export type S_Machine = StateMachine<
   any,
   any
 >;
-
-

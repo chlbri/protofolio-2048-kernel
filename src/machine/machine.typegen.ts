@@ -4,6 +4,13 @@ export interface Typegen0 {
   '@@xstate/typegen': true;
   eventsCausingActions: {
     addNotEnvVariablesError: 'error.platform.mainMachine.checkingEnvVariables:invocation[0]';
+    addErrorStarting: 'error.platform.mainMachine.starting.idle:invocation[0]';
+    addRandomNumber:
+      | ''
+      | 'MOVE_UP'
+      | 'MOVE_DOWN'
+      | 'MOVE_LEFT'
+      | 'MOVE_RIGHT';
     addLogByEmailPasswordError: 'error.platform.mainMachine.started.authentication.emailPassword.login:invocation[0]';
     addRegisterByEmailPAsswordError: 'error.platform.mainMachine.started.authentication.emailPassword.register:invocation[0]';
     adLogByFacebookError: 'error.platform.mainMachine.started.authentication.facebook.login:invocation[0]';
@@ -26,6 +33,11 @@ export interface Typegen0 {
       type: 'error.platform.mainMachine.checkingEnvVariables:invocation[0]';
       data: unknown;
     };
+    'error.platform.mainMachine.starting.idle:invocation[0]': {
+      type: 'error.platform.mainMachine.starting.idle:invocation[0]';
+      data: unknown;
+    };
+    '': { type: '' };
     'error.platform.mainMachine.started.authentication.emailPassword.login:invocation[0]': {
       type: 'error.platform.mainMachine.started.authentication.emailPassword.login:invocation[0]';
       data: unknown;
@@ -76,11 +88,6 @@ export interface Typegen0 {
       data: unknown;
       __tip: 'See the XState TS docs to learn how to strongly type this.';
     };
-    'done.invoke.mainMachine.preparing:invocation[0]': {
-      type: 'done.invoke.mainMachine.preparing:invocation[0]';
-      data: unknown;
-      __tip: 'See the XState TS docs to learn how to strongly type this.';
-    };
     'xstate.after(timeBeforeAutolog)#mainMachine.started.notAuthenticated': {
       type: 'xstate.after(timeBeforeAutolog)#mainMachine.started.notAuthenticated';
     };
@@ -89,7 +96,7 @@ export interface Typegen0 {
   invokeSrcNameMap: {
     checkEnvironmentVariables: 'done.invoke.mainMachine.checkingEnvVariables:invocation[0]';
     prepare: 'done.invoke.mainMachine.preparing:invocation[0]';
-    start: 'done.invoke.mainMachine.starting:invocation[0]';
+    start: 'done.invoke.mainMachine.starting.idle:invocation[0]';
     logByEmailPassword: 'done.invoke.mainMachine.started.authentication.emailPassword.login:invocation[0]';
     registerByEmailPassword: 'done.invoke.mainMachine.started.authentication.emailPassword.register:invocation[0]';
     logByFacebook: 'done.invoke.mainMachine.started.authentication.facebook.login:invocation[0]';
@@ -104,6 +111,7 @@ export interface Typegen0 {
   missingImplementations: {
     actions:
       | 'addNotEnvVariablesError'
+      | 'addErrorStarting'
       | 'addLogByEmailPasswordError'
       | 'addRegisterByEmailPAsswordError'
       | 'adLogByFacebookError'
@@ -131,7 +139,7 @@ export interface Typegen0 {
   eventsCausingServices: {
     checkEnvironmentVariables: 'START';
     prepare: 'done.invoke.mainMachine.checkingEnvVariables:invocation[0]';
-    start: 'done.invoke.mainMachine.preparing:invocation[0]';
+    start: 'xstate.init';
     logByEmailPassword: 'LOGIN.EMAIL_PASSWORD';
     registerByEmailPassword: 'REGISTER.EMAIL_PASSWORD';
     logByFacebook: 'LOGIN.FACEBOOK';
@@ -153,6 +161,9 @@ export interface Typegen0 {
     | 'checkingEnvVariables'
     | 'preparing'
     | 'starting'
+    | 'starting.idle'
+    | 'starting.addFirstRandom'
+    | 'starting.addSecondRandom'
     | 'started'
     | 'started.notAuthenticated'
     | 'started.authentication'
@@ -178,6 +189,7 @@ export interface Typegen0 {
     | 'started.authenticated.game.movements.fixed'
     | 'started.authenticated.game.movements.moving'
     | {
+        starting?: 'idle' | 'addFirstRandom' | 'addSecondRandom';
         started?:
           | 'notAuthenticated'
           | 'authentication'
