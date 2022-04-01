@@ -3,7 +3,7 @@ export interface Typegen0 {
     eventsCausingActions: {
         addNotEnvVariablesError: 'error.platform.mainMachine.checkingEnvVariables:invocation[0]';
         addErrorStarting: 'error.platform.mainMachine.starting.idle:invocation[0]';
-        addRandomNumber: '';
+        addRandomNumber: '' | 'MOVE_UP' | 'MOVE_DOWN' | 'MOVE_LEFT' | 'MOVE_RIGHT';
         assignPossibleMoves: '';
         addLogByEmailPasswordError: 'error.platform.mainMachine.started.authentication.emailPassword.login:invocation[0]';
         addRegisterByEmailPAsswordError: 'error.platform.mainMachine.started.authentication.emailPassword.register:invocation[0]';
@@ -20,8 +20,8 @@ export interface Typegen0 {
         moveRight: 'MOVE_RIGHT';
         rinitGame: 'RINIT.GAME';
         inc: 'xstate.init';
-        startAnimation: '';
-        addScore: '';
+        startAnimation: 'MOVE_UP' | 'MOVE_DOWN' | 'MOVE_LEFT' | 'MOVE_RIGHT';
+        addScore: 'MOVE_UP' | 'MOVE_DOWN' | 'MOVE_LEFT' | 'MOVE_RIGHT';
     };
     internalEvents: {
         'error.platform.mainMachine.checkingEnvVariables:invocation[0]': {
@@ -139,7 +139,7 @@ export interface Typegen0 {
         timeBeforeAutolog: 'xstate.init';
         moveDuration: 'xstate.init';
     };
-    matchesStates: 'idle' | 'checkingEnvVariables' | 'preparing' | 'starting' | 'starting.idle' | 'starting.addFirstRandom' | 'starting.addSecondRandom' | 'starting.possibleMoves' | 'started' | 'started.notAuthenticated' | 'started.authentication' | 'started.authentication.emailPassword' | 'started.authentication.emailPassword.login' | 'started.authentication.emailPassword.register' | 'started.authentication.facebook' | 'started.authentication.facebook.login' | 'started.authentication.facebook.register' | 'started.authentication.google' | 'started.authentication.google.login' | 'started.authentication.google.register' | 'started.authentication.apple' | 'started.authentication.apple.login' | 'started.authentication.apple.register' | 'started.authentication.autoLog' | 'started.deauthentication' | 'started.deauthentication.processing' | 'started.deauthentication.confirmation' | 'started.authenticated' | 'started.authenticated.game' | 'started.authenticated.game.movements' | 'started.authenticated.game.movements.fixed' | 'started.authenticated.game.movements.possibleMoves' | 'started.authenticated.game.movements.moving' | 'started.authenticated.game.movements.canMove' | 'started.authenticated.game.movements.blocked' | 'started.authenticated.game.movements.blocked.idle' | 'started.authenticated.game.movements.blocked.addFirstRandom' | 'started.authenticated.game.movements.blocked.addSecondRandom' | {
+    matchesStates: 'idle' | 'checkingEnvVariables' | 'preparing' | 'starting' | 'starting.idle' | 'starting.addFirstRandom' | 'starting.addSecondRandom' | 'starting.possibleMoves' | 'started' | 'started.notAuthenticated' | 'started.authentication' | 'started.authentication.emailPassword' | 'started.authentication.emailPassword.login' | 'started.authentication.emailPassword.register' | 'started.authentication.facebook' | 'started.authentication.facebook.login' | 'started.authentication.facebook.register' | 'started.authentication.google' | 'started.authentication.google.login' | 'started.authentication.google.register' | 'started.authentication.apple' | 'started.authentication.apple.login' | 'started.authentication.apple.register' | 'started.authentication.autoLog' | 'started.deauthentication' | 'started.deauthentication.processing' | 'started.deauthentication.confirmation' | 'started.authenticated' | 'started.authenticated.game' | 'started.authenticated.game.movements' | 'started.authenticated.game.movements.fixed' | 'started.authenticated.game.movements.possibleMoves' | 'started.authenticated.game.movements.moving' | 'started.authenticated.game.movements.gameOver' | 'started.authenticated.game.movements.blocked' | 'started.authenticated.game.movements.blocked.idle' | 'started.authenticated.game.movements.blocked.addFirstRandom' | 'started.authenticated.game.movements.blocked.addSecondRandom' | {
         starting?: 'idle' | 'addFirstRandom' | 'addSecondRandom' | 'possibleMoves';
         started?: 'notAuthenticated' | 'authentication' | 'deauthentication' | 'authenticated' | {
             authentication?: 'emailPassword' | 'facebook' | 'google' | 'apple' | 'autoLog' | {
@@ -151,7 +151,7 @@ export interface Typegen0 {
             deauthentication?: 'processing' | 'confirmation';
             authenticated?: 'game' | {
                 game?: 'movements' | {
-                    movements?: 'fixed' | 'possibleMoves' | 'moving' | 'canMove' | 'blocked' | {
+                    movements?: 'fixed' | 'possibleMoves' | 'moving' | 'gameOver' | 'blocked' | {
                         blocked?: 'idle' | 'addFirstRandom' | 'addSecondRandom';
                     };
                 };
